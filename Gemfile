@@ -29,6 +29,10 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 
 gem 'overpass-api-ruby'
 
+group :development, :test do
+  gem 'rspec-rails', '~> 3.0'
+end
+
 group :development do
   gem 'guard'
   gem 'guard-livereload', require: false
