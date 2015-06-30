@@ -10,7 +10,7 @@ namespace :osm do
 
     parks.each do |park|
       Park.where(osm_id: park[:id]).first_or_initialize.update!(
-        name: park[:name],
+        name: park[:tags]["name"],
         osm_id: park[:id],
         latitude: park[:lat],
         longitude: park[:lon]
