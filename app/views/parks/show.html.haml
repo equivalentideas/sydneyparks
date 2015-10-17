@@ -1,0 +1,22 @@
+= stylesheet_link_tag "http://libs.cartocdn.com/cartodb.js/v3/3.15/themes/css/cartodb.css"
+%header.site-header
+  %h1= @park.name
+  .controls
+    = link_to 'Shuffle', '/random', class: 'link-shuffle'
+#map
+
+// google map version %iframe{width: "100%", height: 800, frameborder: 0, style: "border:0", src: "https://www.google.com/maps/embed/v1/view?key=AIzaSyDvN9qT9zRYx_VOWyGm8yA6dZCFdw2jU14&center=#{@park.latitude},#{@park.longitude}&zoom=18&maptype=satellite"}
+// %iframe{width: "100%", height: 800, frameborder: 0, src: "https://equivalentideas.cartodb.com/viz/e82c0866-1f80-11e5-81f6-0e853d047bba/embed_map?zoom=18&center_lat=#{@park.latitude}&center_lon=#{@park.longitude}"}
+= javascript_include_tag "http://libs.cartocdn.com/cartodb.js/v3/3.15/cartodb.js"
+:javascript
+  window.onload = function() {
+    cartodb.createVis(
+      'map',
+      'https://equivalentideas.cartodb.com/api/v2/viz/e82c0866-1f80-11e5-81f6-0e853d047bba/viz.json',
+      {
+        center_lat: #{@park.latitude},
+        center_lon: #{@park.longitude},
+        zoom: 18
+      }
+    );
+  }
